@@ -2,6 +2,7 @@
 var canvas;
 var mymenu;
 var teapotMat=mat4.create();
+var teapotMat2=mat4.create();
 var groundMat=mat4.create();
 
 var blaMat=mat4.create();
@@ -86,6 +87,12 @@ function calcTransforms() {
     mat4.scale(teapotMat,teapotMat, vec3.fromValues(1,1,1));
     mat4.multiply(teapotMat,teapotMat,blaMat);
 
+    //teapot2
+    mat4.identity(teapotMat2);
+    mat4.translate(teapotMat2,teapotMat2, vec3.fromValues(3,2,0));
+    mat4.scale(teapotMat2,teapotMat2, vec3.fromValues(1,1,1));
+    mat4.multiply(teapotMat2,teapotMat2,blaMat);
+
     //ground
     mat4.identity(groundMat);
     mat4.translate(groundMat,groundMat,vec3.fromValues(0,mymenu.groundY,0));
@@ -142,7 +149,8 @@ function onAnimate() {
         {"pos":[-mymenu.lightX,mymenu.lightY,-mymenu.lightZ,1]},
     ],[
         {"mesh":"ground","material":groundMtrl,"modelMat":groundMat},
-        {"mesh":"teapot","material":teapotMtrl,"modelMat":teapotMat}
+        {"mesh":"teapot","material":teapotMtrl,"modelMat":teapotMat},
+        {"mesh":"teapot","material":teapotMtrl,"modelMat":teapotMat2}
     ]) ;
     
 
